@@ -1,0 +1,7 @@
+{
+	"Name": "ClearItem",
+	"Description": "定時清理掉落物",
+	"Author": "lZiMUl",
+	"Main": "./MainActivity.JS",
+	"Version": "1.0.0"
+}

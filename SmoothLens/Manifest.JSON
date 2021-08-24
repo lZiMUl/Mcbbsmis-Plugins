@@ -1,0 +1,7 @@
+{
+	"Name": "SmoothLens",
+	"Description": "平滑偽鏡頭",
+	"Author": "lZiMUl",
+	"Main": "./MainActivity.JS",
+	"Version": "1.0.0"
+}

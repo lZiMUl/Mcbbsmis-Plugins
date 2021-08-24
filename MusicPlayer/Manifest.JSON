@@ -1,0 +1,7 @@
+{
+	"Name": "MusicPlayer",
+	"Description": "音樂播放器",
+	"Author": "lZiMUl",
+	"Main": "./MainActivity.JS",
+	"Version": "1.0.0"
+}
