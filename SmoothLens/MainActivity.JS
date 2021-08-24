@@ -2,20 +2,26 @@ class MainActivity {
 	constructor (Socket) {
 		const PackageName = 'SmoothLens';
 		const Root = '@e [Type = Armor_Stand, Name = Core]';
-		let [Core, Status] = new Array (null, false);
+		let [Core, Status] = new Array (null, true);
 		Socket ['SendMTM'] (PackageName, '§c歡迎使用 §d平滑鏡頭插件');
 		Socket ['Input'] (Data => {
 			switch (Data [1]) {
 				case 'SetPos':
-					this ['Restart'] (Core, Root);
+					clearTimeout (this ['Timer']);
+					clearInterval (Core);
+					Socket ['SendCMD'] (`Kill ${Root}`);
+					Socket ['SendCMD'] ('Summon Armor_Stand Core');
+					Socket ['SendCMD'] (`Effect ${Root} Invisibility 10000 255 true`);
 					Socket ['SendMTM'] (PackageName, '§a已設定並更新當前位置');
 					Status = true;
 				break;
 				
 				case 'Start':
-					if (Status) {
-						setTimeout (() => {
-							Status = false;
+					if (Status)
+					if (Core) {
+						Status = false;
+						this ['Timer'] = setTimeout (() => {
+							Status = true;
 							clearInterval (Core);
 							Socket ['SendMTM'] (PackageName, '§4已停止');
 						}, (Data [2] || 20) * 1000);
@@ -28,7 +34,7 @@ class MainActivity {
 				break;
 				
 				case 'Stop':
-					Status = false;
+					Status = true;
 					clearInterval (Core);
 					Socket ['SendMTM'] (PackageName, '§4已強制停止');
 				break;
@@ -38,13 +44,6 @@ class MainActivity {
 			}
 		})
 	};
-	
-	Restart (Core, Root) {
-		clearInterval (Core);
-		Socket ['SendCMD'] (`Kill ${Root}`);
-		Socket ['SendCMD'] ('Summon Armor_Stand Core');
-		Socket ['SendCMD'] (`Effect ${Root} Invisibility 10000 255 true`);
-	}
 	
 	ParseValue (Value, Default) {
 		try {
