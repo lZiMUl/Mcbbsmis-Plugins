@@ -44,7 +44,7 @@ class MainActivity {
 				default:
 				Socket ['SendMTM'] (PackageName, '§4為找到此屬性');
 			}
-		})
+		});
 	};
 	
 	ParseValue (Value, Default) {
