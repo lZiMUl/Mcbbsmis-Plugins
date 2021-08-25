@@ -18,6 +18,7 @@ class MainActivity {
 					Socket ['SendCMD'] (`Kill ${Root}`);
 					Socket ['SendCMD'] ('Summon Armor_Stand Core');
 					Socket ['SendCMD'] (`Effect ${Root} Invisibility 10000 255 true`);
+					Socket ['SendCMD'] (`Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ${Root}`);
 					Socket ['SendMTM'] (PackageName, '§a已設定並更新當前位置');
 					Status = true;
 					SubStatus = true;
@@ -30,6 +31,7 @@ class MainActivity {
 						this ['Timer'] = setTimeout (() => {
 							SubStatus = true;
 							clearInterval (Core);
+							Socket ['SendCMD'] (`Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ${Root}`);
 							Socket ['SendMTM'] (PackageName, '§4已停止');
 						}, (Data [2] || 20) * 1000);
 						Core = setInterval (() => {
@@ -44,6 +46,7 @@ class MainActivity {
 					SubStatus = true;
 					clearTimeout (this ['Timer']);
 					clearInterval (Core);
+					Socket ['SendCMD'] (`Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ${Root}`);
 					Socket ['SendMTM'] (PackageName, '§4已強制停止');
 				break;
 
