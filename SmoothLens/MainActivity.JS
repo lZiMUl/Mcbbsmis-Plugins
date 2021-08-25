@@ -27,8 +27,8 @@ class MainActivity {
 							Socket ['SendMTM'] (PackageName, '§4已停止');
 						}, (Data [2] || 20) * 1000);
 						Core = setInterval (() => {
-							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp @s ~ ~ ~ ${this ['ParseValue'] (Data [6], true)? `~${this ['ParseValue'] (Data [4], 1)}`: `~ ~${this ['ParseValue'] (Data [4], 1)}` }`);
-							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ^ ^ ^${Data [5] || 20} ${this ['ParseValue'] (Data [7], false)? 'Facing @s': ''}`);
+							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp @s ~ ~ ~ ~${this ['ParseValue'] (Data [4], 1)}`);
+							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ^ ^${Data [5] || 0} ^${Data [5] || 20} ${this ['ParseValue'] (Data [7], false)? 'Facing @s': ''}`);
 						}, Data [3] || 100);
 					} else
 					Socket ['SendMTM'] (PackageName, '§4你還沒有設置平滑中心點');
