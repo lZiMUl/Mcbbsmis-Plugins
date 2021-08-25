@@ -6,6 +6,12 @@ class MainActivity {
 		Socket ['SendMTM'] (PackageName, '§c歡迎使用 §d平滑鏡頭插件');
 		Socket ['Input'] (Data => {
 			switch (Data [1]) {
+				case 'Help':
+					Socket ['SendMTM'] (PackageName, '§a$Plugins: SmoothLens SetPos §e設置圍繞中心點');
+					Socket ['SendMTM'] (PackageName, '§a$Plugins: SmoothLens Start 定時器(單位: 秒) 每秒間隔(單位: 毫秒) 角度 距離 Y軸偏移值 鎖定中心(true 或 false) §e開始運行');
+					Socket ['SendMTM'] (PackageName, '§a$Plugins: SmoothLens Stop §e強制停止運行');
+				break;
+				
 				case 'SetPos':
 					clearTimeout (this ['Timer']);
 					clearInterval (Core);
@@ -28,7 +34,7 @@ class MainActivity {
 						}, (Data [2] || 20) * 1000);
 						Core = setInterval (() => {
 							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp @s ~ ~ ~ ~${this ['ParseValue'] (Data [4], 1)}`);
-							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ^ ^${Data [5] || 0} ^${Data [5] || 20} ${this ['ParseValue'] (Data [7], false)? 'Facing @s': ''}`);
+							Socket ['SendCMD'] (`Execute ${Root} ~ ~ ~ Tp ${Socket ['ServiceConfig'] ['Minecraft'] ['XboxID']} ^ ^${Data [6] || 0} ^${Data [5] || 20} ${this ['ParseValue'] (Data [7], true)? 'Facing @s': ''}`);
 						}, Data [3] || 100);
 					} else
 					Socket ['SendMTM'] (PackageName, '§4你還沒有設置平滑中心點');
@@ -44,7 +50,7 @@ class MainActivity {
 				default:
 				Socket ['SendMTM'] (PackageName, '§4為找到此屬性');
 			}
-		});
+		})
 	};
 	
 	ParseValue (Value, Default) {
@@ -53,5 +59,5 @@ class MainActivity {
 		} catch (Err) {
 			return Default;
 		}
-	}
+	};
 }
