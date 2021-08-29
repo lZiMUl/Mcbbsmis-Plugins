@@ -2,7 +2,7 @@ class MainActivity {
 	static Cache = [];
 
 	constructor (Socket) {
-		const {exec} = require ('child_process');
+		this ['Exec'] = require ('child_process') ['exec'];
 		let Switch = true;
 		
 		//彈幕播報
@@ -28,7 +28,7 @@ class MainActivity {
 	};
 	
 	Broadcast (Message) {
-		exec (`termux-tts-speak "${Message}"`, Err => {
+		this ['Exec'] (`termux-tts-speak "${Message}"`, Err => {
 			if (MainActivity ['Cache'] ['length'] !== 0)
 			Broadcast (MainActivity ['Cache'] ['shift'] ());
 		})
