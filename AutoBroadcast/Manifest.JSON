@@ -1,7 +1,0 @@
-{
-	"Name": "AutoBroadcast",
-	"Description": "自動播報彈幕",
-	"Author": "lZiMUl",
-	"Main": "./MainActivity.JS",
-	"Version": "1.0.1"
-}

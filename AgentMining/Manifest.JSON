@@ -1,7 +1,0 @@
-{
-	"Name": "AgentMining",
-	"Description": "一款將Agent變成挖礦機",
-	"Author": "lZiMUl",
-	"Main": "./MainActivity.JS",
-	"Version": "1.0.0"
-}
